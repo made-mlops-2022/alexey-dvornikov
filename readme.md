@@ -1,4 +1,4 @@
-![Build status](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml/badge.svg?branch=01)
+[![Build status](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml/badge.svg?branch=01)](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml)
 
 ## Quick start
 
