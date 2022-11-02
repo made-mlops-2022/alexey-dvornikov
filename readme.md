@@ -22,3 +22,30 @@ $ python ./ml_project/source/predict.py ./ml_project/data/pipeline.pickle
 ```
 $ python -m pytest ./ml_project/source/test.py 
 ```
+
+## Project tree
+```
+.
+|-- __init__.py            
+|-- config                 <- configuration files for training;
+|   |-- 1_config.yaml      
+|   |-- 2_config.yaml      
+|   `-- 3_config.yaml
+|-- data                   <- input/output directory;
+|   |-- holdout.csv        <- data for predicton;
+|   |-- pipeline.pickle    <- serialized model;
+|   |-- prediction.csv     <- model predictions;
+|   `-- train.csv          <- train data;
+|-- requirements.txt       <- dependencies list;
+|-- research               <- EDA directory;
+|   |-- notebook.ipynb     <- jupyter notebook;
+|   `-- report.py          <- script that makes a report;
+`-- source                 <- source directory;
+    |-- dataclass_.py      <- train dataclass;
+    |-- logger.py          <- setup logger;
+    |-- model.py           <- model module;
+    |-- predict.py         <- prediction function;
+    |-- test.py            <- test function;
+    |-- train.py           <- train function;
+    `-- transformer.py     <- custom transformer module;
+```
