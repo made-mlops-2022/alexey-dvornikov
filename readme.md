@@ -4,21 +4,21 @@
 
 ### Requirements
 ```
-$ pip install -r ./01/requirements.txt
+$ pip install -r ./ml_project/requirements.txt
 ```
 
 ### Train
 ```
-$ python ./01/source/train.py ./01/config/1_config.yaml
+$ python ./ml_project/source/train.py ./ml_project/config/1_config.yaml
 ```
 
 ### Predict
 ```
-$ python ./01/source/predict.py ./01/data/pipeline.pickle ./01/data/holdout.csv
-./01/data/prediction.csv
+$ python ./ml_project/source/predict.py ./ml_project/data/pipeline.pickle 
+./ml_project/data/holdout.csv ./ml_project/data/prediction.csv
 ```
 
 ### Test
 ```
-$ python -m pytest ./01/source/test.py 
+$ python -m pytest ./ml_project/source/test.py 
 ```
