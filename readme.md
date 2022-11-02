@@ -1,21 +1,24 @@
+![Build status](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml.badge.svd?branch=01)
+
 ## Quick start
 
 ### Requirements
 ```
-$ pip install -r ./requirements.txt
+$ pip install -r ./01/requirements.txt
 ```
 
 ### Train
 ```
-$ python ./source/train.py ./config/1_config.yaml
+$ python ./01/source/train.py ./01/config/1_config.yaml
 ```
 
 ### Predict
 ```
-$ python ./source/predict.py ./data/pipeline.pickle ./data/holdout.csv ./data/prediction.csv
+$ python ./01/source/predict.py ./01/data/pipeline.pickle ./01/data/holdout.csv
+./01/data/prediction.csv
 ```
 
 ### Test
 ```
-$ python -m pytest source
+$ python -m pytest ./01/source/test.py 
 ```

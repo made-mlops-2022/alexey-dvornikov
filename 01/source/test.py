@@ -6,9 +6,9 @@ from train import train
 from predict import predict
 from dataclass_ import TrainData
 
-CONFIG_PATH_1 = "config/1_config.yaml"
-CONFIG_PATH_2 = "config/2_config.yaml"
-CONFIG_PATH_3 = "config/3_config.yaml"
+CONFIG_PATH_1 = "01/config/1_config.yaml"
+CONFIG_PATH_2 = "01/config/2_config.yaml"
+CONFIG_PATH_3 = "01/config/3_config.yaml"
 
 
 def test_1():
@@ -17,7 +17,11 @@ def test_1():
     :return: None.
     """
     train(TrainData(CONFIG_PATH_1))
-    predict("data/pipeline.pickle", "data/holdout.csv", "data/prediction.csv")
+    predict(
+        "01/data/pipeline.pickle",
+        "01/data/holdout.csv",
+        "01/data/prediction.csv",
+    )
 
 
 def test_2():
@@ -26,7 +30,11 @@ def test_2():
     :return: None.
     """
     train(TrainData(CONFIG_PATH_2))
-    predict("data/pipeline.pickle", "data/holdout.csv", "data/prediction.csv")
+    predict(
+        "01/data/pipeline.pickle",
+        "01/data/holdout.csv",
+        "01/data/prediction.csv",
+    )
 
 
 def test_3():
@@ -35,7 +43,11 @@ def test_3():
     :return: None.
     """
     train(TrainData(CONFIG_PATH_3))
-    predict("data/pipeline.pickle", "data/holdout.csv", "data/prediction.csv")
+    predict(
+        "01/data/pipeline.pickle",
+        "01/data/holdout.csv",
+        "01/data/prediction.csv",
+    )
 
 
 if __name__ == "__main__":

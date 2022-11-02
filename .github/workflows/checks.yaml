@@ -23,3 +23,5 @@ jobs:
         run: flake8 ./01/source/
       - name: run pylint
         run: pylint ./01/source/
+      - name: run tests
+        run: pytest ./01/source/test.py

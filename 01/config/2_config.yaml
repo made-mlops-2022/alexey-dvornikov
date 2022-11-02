@@ -1,7 +1,7 @@
 # config with linear model and polynomial features
 train:
   dataset:
-    path: data/train.csv
+    path: 01/data/train.csv
     target_col: raintomorrow
     id_col: row_id
     is_fake: False
@@ -13,6 +13,6 @@ train:
   split:
     test_size: 0.33
 artifacts:
-  path: data/pipeline.pickle
+  path: 01/data/pipeline.pickle
 logging:
-  path: data/cache.log
+  path: 01/data/cache.log
