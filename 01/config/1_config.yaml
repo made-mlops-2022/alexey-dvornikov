@@ -1,0 +1,18 @@
+# config with random forest and label encoding
+train:
+  dataset:
+    path: data/train.csv
+    target_col: raintomorrow
+    id_col: row_id
+    is_fake: False
+    fake_size: 15000
+  model:
+    mode: forest
+  transformer:
+    mode: forest
+  split:
+    test_size: 0.25
+artifacts:
+  path: data/pipeline.pickle
+logging:
+  path: data/cache.log

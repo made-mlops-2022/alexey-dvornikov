@@ -1,0 +1,18 @@
+# config with generating data
+train:
+  dataset:
+    path: data/train.csv
+    target_col: raintomorrow
+    id_col: row_id
+    is_fake: True
+    fake_size: 15000
+  model:
+    mode: logreg
+  transformer:
+    mode: linear
+  split:
+    test_size: 0.33
+artifacts:
+  path: data/pipeline.pickle
+logging:
+  path: data/cache.log
