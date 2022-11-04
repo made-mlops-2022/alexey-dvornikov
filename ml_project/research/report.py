@@ -42,7 +42,7 @@ def prepare_data(
     return dataframe
 
 
-with open("result.txt", "w+", encoding="UTF-8") as file:
+with open("result/result.txt", "w+", encoding="UTF-8") as file:
     db_train = pd.read_csv("../data/train.csv")
     db_test = pd.read_csv("../data/holdout.csv")
 
@@ -51,7 +51,7 @@ with open("result.txt", "w+", encoding="UTF-8") as file:
 
     plt.title("target distribution")
     sns.countplot(x=db_train["raintomorrow"])
-    plt.savefig("target_distribution.pdf")
+    plt.savefig("result/target_distribution.pdf")
 
     file.write("NANs:\n")
     file.write(str(db_train.isnull().sum()) + 2 * "\n")
@@ -70,7 +70,7 @@ with open("result.txt", "w+", encoding="UTF-8") as file:
     sns.boxplot(x=db_train["windspeed9am"].dropna())
     plt.subplot(326)
     sns.boxplot(x=db_train["humidity9am"].dropna())
-    plt.savefig("possible_outliers.pdf")
+    plt.savefig("result/possible_outliers.pdf")
 
     num_cols = list(db_train.select_dtypes(include=np.number).columns)
     cat_cols = list(db_train.select_dtypes(include="object").columns)
@@ -92,7 +92,7 @@ with open("result.txt", "w+", encoding="UTF-8") as file:
     plt.figure(figsize=(15, 10))
     plt.title("correlation matrix")
     sns.heatmap(correlations, annot=True, cmap="crest")
-    plt.savefig("correlation_matrix.pdf")
+    plt.savefig("result/correlation_matrix.pdf")
 
     selector = RandomForestClassifier(n_jobs=-1)
     selector.fit(x_train, y_train)
@@ -104,4 +104,4 @@ with open("result.txt", "w+", encoding="UTF-8") as file:
     features = x_train.columns
 
     sns.barplot(y=features, x=feature_importances)
-    plt.savefig("feature_importances.pdf")
+    plt.savefig("result/feature_importances.pdf")

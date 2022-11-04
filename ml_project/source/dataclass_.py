@@ -61,9 +61,7 @@ class TrainData:
         self.x_val = None
         self.y_val = None
 
-        dataclass_logger.debug(
-            "Created an instance of TrainData."
-        )
+        dataclass_logger.debug("Created an instance of TrainData.")
 
     def get_data(
         self,

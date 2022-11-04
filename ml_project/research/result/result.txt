@@ -1,0 +1,34 @@
+TRAIN SHAPE:
+(50000, 22)
+
+NANs:
+row_id               0
+mintemp            298
+maxtemp            154
+rainfall           607
+evaporation      25438
+sunshine         29988
+windgustdir       3893
+windgustspeed     3889
+winddir9am        4576
+winddir3pm        1788
+windspeed9am       780
+windspeed3pm      1228
+humidity9am        730
+humidity3pm       1081
+pressure9am       6793
+pressure3pm       6765
+cloud9am         19021
+cloud3pm         19704
+temp9am            489
+temp3pm            886
+raintoday          607
+raintomorrow         0
+dtype: int64
+
+NUMERICAL FEATURES:
+['mintemp', 'maxtemp', 'rainfall', 'evaporation', 'sunshine', 'windgustspeed', 'windspeed9am', 'windspeed3pm', 'humidity9am', 'humidity3pm', 'pressure9am', 'pressure3pm', 'cloud9am', 'cloud3pm', 'temp9am', 'temp3pm', 'raintomorrow']
+
+CATEGORICAL FEATURES:
+['row_id', 'windgustdir', 'winddir9am', 'winddir3pm', 'raintoday']
+

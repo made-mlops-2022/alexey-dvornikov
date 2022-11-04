@@ -39,7 +39,13 @@ $ python -m pytest ./source/test.py
 |-- requirements.txt       <- dependencies list;
 |-- research               <- EDA directory;
 |   |-- notebook.ipynb     <- jupyter notebook;
-|   `-- report.py          <- script that makes a report;
+|   |-- report.py          <- script that generates EDA report;
+|   `-- result             <- report results (with plots);
+|       |-- correlation_matrix.pdf
+|       |-- feature_importances.pdf
+|       |-- possible_outliers.pdf
+|       |-- result.txt
+|       `-- target_distribution.pdf
 `-- source                 <- source directory;
     |-- dataclass_.py      <- train dataclass;
     |-- logger.py          <- setup logger;
