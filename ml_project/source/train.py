@@ -29,6 +29,7 @@ def train(data: TrainData) -> None:
 
     x_train, y_train, x_val, y_val = data.get_data()
     model.fit(x_train, y_train)
+    train_logger.info("Pipeline fitted.")
 
     y_pred = model.predict_proba(x_val)[:, 1]
     score = roc_auc_score(y_val, y_pred)
@@ -42,4 +43,5 @@ def train(data: TrainData) -> None:
 
 if __name__ == "__main__":
     CONFIG_PATH = sys.argv[1]
-    train(TrainData(CONFIG_PATH))
+    dataclass = TrainData(CONFIG_PATH)
+    train(dataclass)

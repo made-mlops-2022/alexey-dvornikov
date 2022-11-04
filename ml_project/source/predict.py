@@ -20,7 +20,7 @@ def predict(
     path_to_artifacts: str,
     path_to_test: str,
     path_to_output: str,
-    path_to_cache="ml_project/data/cache.log",
+    path_to_cache="./data/cache.log",
     predict_proba=False,
 ) -> None:
     """

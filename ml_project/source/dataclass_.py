@@ -11,7 +11,7 @@ from sdv.tabular import GaussianCopula
 from model import WeatherModel
 from transformer import WeatherTransformer
 
-dataclasses_logger = logging.getLogger("dataclasses")
+dataclass_logger = logging.getLogger("dataclass")
 
 
 def generate_fake_data(
@@ -49,7 +49,7 @@ class TrainData:
         fake_size = self.config["train"]["dataset"]["fake_size"]
         if is_fake:
             data = generate_fake_data(data, fake_size)
-            dataclasses_logger.info(
+            dataclass_logger.info(
                 "Generating fake train data; size=%d.", fake_size
             )
 
@@ -60,6 +60,10 @@ class TrainData:
 
         self.x_val = None
         self.y_val = None
+
+        dataclass_logger.debug(
+            "Created an instance of TrainData."
+        )
 
     def get_data(
         self,
@@ -75,7 +79,7 @@ class TrainData:
         Split data into train&validation with defined validation size;
         :return: None.
         """
-        dataclasses_logger.info("Splitting train data...")
+        dataclass_logger.info("Splitting train data...")
         test_size = self.config["train"]["split"]["test_size"]
         self.x_train, self.x_val, self.y_train, self.y_val = train_test_split(
             self.x_train,
@@ -118,4 +122,5 @@ class TrainData:
                 ),
             ]
         )
+        dataclass_logger.info("Pipeline created.")
         return model

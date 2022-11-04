@@ -58,7 +58,7 @@ class WeatherTransformer(BaseEstimator, TransformerMixin):
         self.scaler.fit(data[self.numeric_cols])
         self.transformer.fit(data[self.numeric_cols])
 
-        transformer_logger.info("WeatherTransformer fitted.")
+        transformer_logger.debug("WeatherTransformer fitted.")
         return self
 
     def transform(self, data: pd.DataFrame) -> np.array:

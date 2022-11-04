@@ -46,9 +46,9 @@ class WeatherModel:
         :param y_train: array of train labels;
         :return: None.
         """
-        model_logger.info("Started training...")
+        model_logger.debug("WeatherModel started fitting...")
         self._estimator.fit(x_train, y_train)
-        model_logger.info("Finished training.")
+        model_logger.debug("WeatherModel fitted.")
 
     def predict(self, x_test: np.array) -> np.array:
         """
@@ -56,7 +56,7 @@ class WeatherModel:
         :param x_test: 2D array of test data;
         :return: array of predicted labels.
         """
-        model_logger.info("Predicted probabilities.")
+        model_logger.debug("WeatherModel predicted probabilities.")
         return self._estimator.predict(x_test)
 
     def predict_proba(self, x_test: np.array) -> np.array:
@@ -65,5 +65,5 @@ class WeatherModel:
         :param x_test: 2D array of test data;
         :return: array of predicted probabilities.
         """
-        model_logger.info("Predicted labels.")
+        model_logger.debug("WeatherModel predicted labels.")
         return self._estimator.predict_proba(x_test)
