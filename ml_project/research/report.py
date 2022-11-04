@@ -11,6 +11,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 
 warnings.simplefilter("ignore")
+sns.set_style("darkgrid")
 
 
 def prepare_data(

@@ -13,7 +13,9 @@ def set_logger(cache_path: str) -> None:
     """
     logging.basicConfig(
         level=logging.INFO,
-        filename=cache_path,
-        filemode="a+",
         format="%(asctime)s | %(name)s | %(levelname)s | %(message)s",
+        handlers=[
+            logging.FileHandler(cache_path, mode="a+"),
+            logging.StreamHandler(),
+        ],
     )

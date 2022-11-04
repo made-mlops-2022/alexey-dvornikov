@@ -53,5 +53,5 @@ $ python -m pytest ./source/test.py
     |-- predict.py         <- prediction function;
     |-- test.py            <- test function;
     |-- train.py           <- train function;
-    `-- transformer.py     <- custom transformer module;
+    `-- transformer.py     <- custom transformer module.
 ```

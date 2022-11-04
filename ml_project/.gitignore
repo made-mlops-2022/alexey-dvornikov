@@ -4,5 +4,3 @@ __pycache__
 output
 venv
 research/.ipynb_checkpoints
-research/result.txt
-research/plots
