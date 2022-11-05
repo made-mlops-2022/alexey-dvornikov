@@ -4,3 +4,5 @@ __pycache__
 output
 venv
 research/.ipynb_checkpoints
+mlruns
+outputs

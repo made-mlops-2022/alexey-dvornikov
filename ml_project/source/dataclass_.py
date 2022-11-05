@@ -3,11 +3,11 @@ Dataclasses module.
 """
 
 import logging
-import yaml
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sdv.tabular import GaussianCopula
+from omegaconf import DictConfig
 from model import WeatherModel
 from transformer import WeatherTransformer
 
@@ -33,25 +33,24 @@ class TrainData:
     Train dataclass.
     """
 
-    def __init__(self, path: str):
+    def __init__(self, cfg: DictConfig):
         """
         Class constructor;
-        :param path: path to config.
+        :param cfg: path to config.
         """
-        with open(path, "r", encoding="UTF-8") as file:
-            self.config = yaml.safe_load(file)
+        self.config = cfg
 
-        data = pd.read_csv(self.config["train"]["dataset"]["path"])
-        target_col = self.config["train"]["dataset"]["target_col"]
-        id_col = self.config["train"]["dataset"]["id_col"]
+        data = pd.read_csv(self.config["dataset"]["path"])
+        target_col = self.config["dataset"]["target_col"]
+        id_col = self.config["dataset"]["id_col"]
 
-        is_fake = self.config["train"]["dataset"]["is_fake"]
-        fake_size = self.config["train"]["dataset"]["fake_size"]
+        is_fake = self.config["dataset"]["is_fake"]
+        fake_size = self.config["dataset"]["fake_size"]
         if is_fake:
-            data = generate_fake_data(data, fake_size)
             dataclass_logger.info(
                 "Generating fake train data; size=%d.", fake_size
             )
+            data = generate_fake_data(data, fake_size)
 
         self.x_train, self.y_train = (
             data.drop([target_col, id_col], axis=1),
@@ -78,7 +77,7 @@ class TrainData:
         :return: None.
         """
         dataclass_logger.info("Splitting train data...")
-        test_size = self.config["train"]["split"]["test_size"]
+        test_size = self.config["split"]["test_size"]
         self.x_train, self.x_val, self.y_train, self.y_val = train_test_split(
             self.x_train,
             self.y_train,
@@ -111,12 +110,12 @@ class TrainData:
                 (
                     "transformer",
                     WeatherTransformer(
-                        mode=self.config["train"]["transformer"]["mode"]
+                        mode=self.config["transformer"]["mode"]
                     ),
                 ),
                 (
                     "model",
-                    WeatherModel(mode=self.config["train"]["model"]["mode"]),
+                    WeatherModel(mode=self.config["model"]["mode"]),
                 ),
             ]
         )

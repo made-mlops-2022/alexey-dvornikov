@@ -1,26 +1,47 @@
 [![Build status](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml/badge.svg?branch=homework1)](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml)
 
 ## Quick start
-All actions should be done from the `ml_project` directory.
+All actions should be done from the `./ml_project/` directory.
 
 ### Requirements
-```
-$ pip install -r ./requirements.txt
+```commandline
+pip install -r ./requirements.txt
 ```
 
 ### Train
+Config example:
+```yaml
+# config with random forest and label encoding
+dataset:
+  path: ./data/train.csv
+  target_col: raintomorrow
+  id_col: row_id
+  is_fake: False
+  fake_size: 15000
+model:
+  mode: forest
+transformer:
+  mode: forest
+split:
+  test_size: 0.25
+artifacts:
+  path: ./data/pipeline.pickle
+logging:
+  path: ./data/cache.log
 ```
-$ python ./source/train.py ./config/1_config.yaml
+Execution example:
+```commandline
+python ./source/train.py --config-name=config_1.yaml split.test_size=0.33
 ```
 
 ### Predict
-```
-$ python ./source/predict.py ./data/pipeline.pickle ./data/holdout.csv ./data/prediction.csv
+```commandline
+python ./source/predict.py ./data/pipeline.pickle ./data/holdout.csv ./data/prediction.csv
 ```
 
 ### Test
-```
-$ python -m pytest ./source/test.py 
+```commandline
+python -m pytest ./source/test.py 
 ```
 
 ## Project tree
@@ -28,9 +49,9 @@ $ python -m pytest ./source/test.py
 .
 |-- __init__.py            
 |-- config                 <- configuration files for training;
-|   |-- 1_config.yaml      
-|   |-- 2_config.yaml      
-|   `-- 3_config.yaml
+|   |-- config_1.yaml      
+|   |-- config_2.yaml      
+|   `-- config_3.yaml
 |-- data                   <- input/output directory;
 |   |-- holdout.csv        <- data for predicton;
 |   |-- pipeline.pickle    <- serialized model;
