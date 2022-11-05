@@ -28,11 +28,11 @@ def train(cfg: DictConfig) -> None:
     :param cfg: TrainData object;
     :return: None.
     """
-    print("[CONFIG]")
-    print(OmegaConf.to_yaml(cfg))
     data = TrainData(cfg)
     cache_path = data.get_logging_path()
     set_logger(cache_path)
+
+    train_logger.info("\n" + str(OmegaConf.to_yaml(cfg)))
 
     data.split_data()
     model = data.get_model()
