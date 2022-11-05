@@ -1,7 +1,7 @@
 [![Build status](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml/badge.svg?branch=homework1)](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml)
 
 ## Quick start
-All actions should be done from the `./ml_project/` directory.
+All actions should be done from the inside `./ml_project/` directory.
 
 ### Requirements
 ```commandline
