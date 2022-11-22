@@ -3,12 +3,12 @@
 ## Quick start
 Build docker image from inside the `./online_inference/` directory:
 ```commandline
-docker build -t woodkeeper/weather-model:v1 .
+docker build -t woodkeeper/weather-model:v2 .
 ```
 
 Or pool a docker image from docker-hub:
 ```commandline
-docker pull woodkeeper/weather-model:v1
+docker pull woodkeeper/weather-model:v2
 ```
 
 ## Quick run
@@ -17,6 +17,11 @@ docker pull woodkeeper/weather-model:v1
    docker run -p 8000:8000 --name WeatherModel woodkeeper/weather-model:v1
    ```
  - Go to http://127.0.0.1:8000/docs.
+
+## Quick test
+```commandline
+python -m pytest test.py
+```
 
 ## Project tree
 ```
