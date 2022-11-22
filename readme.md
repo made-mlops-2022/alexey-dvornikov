@@ -14,7 +14,7 @@ docker pull woodkeeper/weather-model:v2
 ## Quick run
 - Run docker container :
    ```commandline
-   docker run -p 8000:8000 --name WeatherModel woodkeeper/weather-model:v1
+   docker run -p 8000:8000 --name WeatherModel woodkeeper/weather-model:v2
    ```
  - Go to http://127.0.0.1:8000/docs.
 
