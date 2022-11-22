@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.9-slim-buster
 RUN python -m pip install --upgrade pip
 
 COPY main.py schema.py online_inference/

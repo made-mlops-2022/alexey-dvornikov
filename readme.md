@@ -21,14 +21,22 @@ docker pull woodkeeper/weather-model:v1
 ## Project tree
 ```
 .
-|-- Dockerfile
-|-- main.py
-|-- model.pkl
-|-- readme.md
-|-- requests
-|   |-- holdout.csv
-|   `-- requests_.py
-|-- requirements.txt
-|-- schema.py
-`-- test.py
+|-- Dockerfile        <- Image configuration;
+|-- main.py           <- FastAPI app;
+|-- model.pkl         <- serialized model;
+|-- readme.md         <- documentation;
+|-- requests          
+|   |-- holdout.csv   <- test data;
+|   `-- requests_.py  <- requests.script;
+|-- requirements.txt  <- requirements;
+|-- schema.py         <- data scheme;
+`-- test.py           <- test scripts.
 ```
+
+## Docker Optimization
+1. [(v1)](https://hub.docker.com/layers/woodkeeper/weather-model/v1/images/sha256-a09f36fbcd2639812d53f04bb0e20970aa0940f52e1347a73b080b879cf445ad?context=repo) Using `python:3.9`:
+   - size ~ 1.46GB
+   - build time ~ 41s
+2. [(v2)](https://hub.docker.com/layers/woodkeeper/weather-model/v2/images/sha256-f362e072638c184cb7bddc00a39578013066dbc870367d1ea48ce8576e5ee911?context=repo) Using `python:3.9-slim-buster`:
+   - size ~ 661MB (-63% from v1)
+   - build time ~ 32s (-3% from v1)
