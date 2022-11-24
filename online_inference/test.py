@@ -2,6 +2,7 @@
 Test module.
 """
 import json
+import os
 import pytest
 from fastapi.testclient import TestClient
 from main import app, load
@@ -15,6 +16,7 @@ def initialize_model() -> None:
     Model initialization;
     :return: None.
     """
+    os.environ["MODEL_PATH"] = "/Model/model.pkl"
     load()
 
 
