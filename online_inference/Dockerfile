@@ -1,13 +1,12 @@
-FROM python:3.9
+FROM python:3.9-slim-buster
 RUN python -m pip install --upgrade pip
 
-COPY main.py schema.py online_inference/
+COPY main.py schema.py config.py online_inference/
 COPY requirements.txt online_inference/
 COPY model.pkl online_inference/
 WORKDIR online_inference/
 
-# ENV TOKEN=<YOUR TOKEN>
-# ENV MODEL_PATH=<PATH TO MODEL>
+ENV MODEL_PATH="/Model/model.pkl"
 
 RUN pip install -r requirements.txt
 
