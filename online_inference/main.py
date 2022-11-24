@@ -1,14 +1,19 @@
 """
 App module.
 """
+import os
 import warnings
 import cloudpickle
+import yadisk
 import pandas as pd
 from fastapi import FastAPI
 from schema import WeatherFeatures
 
 warnings.simplefilter("ignore")
 app = FastAPI()
+
+TOKEN = None
+MODEL_PATH = None
 MODEL = None
 
 
@@ -18,7 +23,11 @@ def load() -> None:
     Load serialized model;
     :return: None.
     """
-    global MODEL
+    global MODEL, MODEL_PATH, TOKEN
+    TOKEN = os.getenv("TOKEN")
+    MODEL_PATH = os.getenv("MODEL_PATH")
+    source = yadisk.YaDisk(token=TOKEN)
+    source.download(MODEL_PATH, "./model.pkl")
     with open("./model.pkl", "rb") as file:
         MODEL = cloudpickle.load(file)
 
@@ -32,7 +41,7 @@ def root() -> dict:
     return {"ping": "pong!"}
 
 
-@app.post("/health", status_code=200)
+@app.post("/health")
 def health() -> bool:
     """
     Check if model is ready;
