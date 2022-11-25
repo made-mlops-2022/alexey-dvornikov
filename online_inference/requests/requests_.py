@@ -10,7 +10,7 @@ warnings.simplefilter("ignore")
 
 ID_COL = "row_id"
 TARGET_COL = "raintomorrow"
-TEST_PATH = "holdout.csv"
+TEST_PATH = "requests/holdout.csv"
 
 if __name__ == "__main__":
     x_test = pd.read_csv(TEST_PATH)
@@ -24,7 +24,11 @@ if __name__ == "__main__":
 
     records = x_test.to_dict(orient="records")
     for record in records:
-        response = requests.post(
-            "http://localhost:8000/predict", json.dumps(record), timeout=2
-        )
-        print(response.json())
+        try:
+            response = requests.post(
+                "http://localhost:8000/predict", json.dumps(record), timeout=2
+            )
+            print(response.json())
+        except KeyboardInterrupt:
+            print("Stopped.")
+            break

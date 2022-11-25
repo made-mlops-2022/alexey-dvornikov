@@ -18,7 +18,14 @@ docker pull woodkeeper/weather-model:v2
    ```
  - Go to http://127.0.0.1:8000/docs.
 
+## Make requests
+From inside the `./online_inference/` directory:
+```commandline
+python ./requests/requests_.py
+```
+
 ## Quick test
+From inside the `./online_inference/` directory:
 ```commandline
 python -m pytest test.py
 ```
