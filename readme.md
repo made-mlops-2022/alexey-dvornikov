@@ -1,78 +1,54 @@
-[![Build status](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml/badge.svg?branch=homework1)](https://github.com/made-mlops-2022/alexey-dvornikov/actions/workflows/checks.yaml)
+# MADE-2022 | MLOps | HW2
 
 ## Quick start
-All actions should be done from the inside `./ml_project/` directory.
-
-### Requirements
+Build docker image from inside the `./online_inference/` directory:
 ```commandline
-pip install -r ./requirements.txt
+docker build -t woodkeeper/weather-model:v2 .
 ```
 
-### Train
-Config example:
-```yaml
-# config with random forest and label encoding
-dataset:
-  path: ./data/train.csv
-  target_col: raintomorrow
-  id_col: row_id
-  is_fake: False
-  fake_size: 15000
-model:
-  mode: forest
-transformer:
-  mode: forest
-split:
-  test_size: 0.25
-artifacts:
-  path: ./data/pipeline.pickle
-logging:
-  path: ./data/cache.log
-```
-Execution example:
+Or pool a docker image from docker-hub:
 ```commandline
-python ./source/train.py --config-name=config_1.yaml split.test_size=0.33
+docker pull woodkeeper/weather-model:v2
 ```
 
-### Predict
+## Quick run
+- Run docker container :
+   ```commandline
+   docker run -p 8000:8000 --name WeatherModel woodkeeper/weather-model:v2
+   ```
+ - Go to http://127.0.0.1:8000/docs.
+
+## Make requests
+From inside the `./online_inference/` directory:
 ```commandline
-python ./source/predict.py ./data/pipeline.pickle ./data/holdout.csv ./data/prediction.csv
+python ./requests/requests_.py
 ```
 
-### Test
+## Quick test
+From inside the `./online_inference/` directory:
 ```commandline
-python -m pytest ./source/test.py 
+python -m pytest test.py
 ```
 
 ## Project tree
 ```
 .
-|-- __init__.py            
-|-- config                 <- configuration files for training;
-|   |-- config_1.yaml      
-|   |-- config_2.yaml      
-|   `-- config_3.yaml
-|-- data                   <- input/output directory;
-|   |-- holdout.csv        <- data for predicton;
-|   |-- pipeline.pickle    <- serialized model;
-|   |-- prediction.csv     <- model predictions;
-|   `-- train.csv          <- train data;
-|-- requirements.txt       <- dependencies list;
-|-- research               <- EDA directory;
-|   |-- notebook.ipynb     <- jupyter notebook;
-|   |-- report.py          <- script that generates EDA report;
-|   `-- result             <- report results (with plots);
-|       |-- correlation_matrix.pdf
-|       |-- feature_importances.pdf
-|       |-- possible_outliers.pdf
-|       |-- result.txt
-|       `-- target_distribution.pdf
-`-- source                 <- source directory;
-    |-- dataclass_.py      <- train dataclass;
-    |-- logger.py          <- setup logger;
-    |-- model.py           <- model module;
-    |-- predict.py         <- prediction function;
-    |-- test.py            <- test function;
-    |-- train.py           <- train function;
-    `-- transformer.py     <- custom transformer module.
+|-- Dockerfile        <- Image configuration;
+|-- main.py           <- FastAPI app;
+|-- model.pkl         <- serialized model;
+|-- readme.md         <- documentation;
+|-- requests          
+|   |-- holdout.csv   <- test data;
+|   `-- requests_.py  <- requests.script;
+|-- requirements.txt  <- requirements;
+|-- schema.py         <- data scheme;
+`-- test.py           <- test scripts.
 ```
+
+## Docker Optimization
+1. [(v1)](https://hub.docker.com/layers/woodkeeper/weather-model/v1/images/sha256-32453170fefb0876c78e7b03339d0cff1f1b51aadbf6ad2637d14bf5aa17c96a?context=repo) Using `python:3.9`:
+   - size ~ 1.46GB
+   - build time ~ 51s
+2. [(v2)](https://hub.docker.com/layers/woodkeeper/weather-model/v2/images/sha256-a0a1bc7369279f2dbdf9b4e1b4cfb09d24d3b71cde62e1e00b2fc2c8c415e843?context=repo) Using `python:3.9-slim-buster`:
+   - size ~ 660MB (-65% from v1)
+   - build time ~ 47s (-8% from v1)
