@@ -8,3 +8,4 @@ airflow_ml_dags/data/
 airflow_ml_dags/.idea/
 airflow_ml_dags/dags/__pycache__/
 airflow_ml_dags/tests/__pycache__/
+airflow_ml_dags/venv
