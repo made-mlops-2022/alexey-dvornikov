@@ -1,4 +1,4 @@
-# MADE-2022 | MLOps | HW2
+# MADE-2022 | MLOps | HW3
 ## Quick start
 Make airflow variables:
 ```commandline
