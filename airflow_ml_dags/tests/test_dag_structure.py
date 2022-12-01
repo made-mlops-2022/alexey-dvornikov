@@ -1,12 +1,3 @@
-import pytest
-from airflow.models import DagBag
-
-
-@pytest.fixture()
-def dagbag():
-    return DagBag(dag_folder="dags/")
-
-
 def assert_dag_dict_equal(source, dag):
     assert dag.task_dict.keys() == source.keys()
     for task_id, downstream_list in source.items():
@@ -15,16 +6,16 @@ def assert_dag_dict_equal(source, dag):
         assert task.downstream_task_ids == set(downstream_list)
 
 
-def test_generate_dag_structure(dagbag):
-    dag = dagbag.get_dag(dag_id="generate_data")
+def test_generate_dag_structure(dag_bag_fixture):
+    dag = dag_bag_fixture.get_dag(dag_id="generate_data")
     assert_dag_dict_equal(
         {"docker-airflow-generate-data": []},
         dag,
     )
 
 
-def test_train_dag_structure(dagbag):
-    dag = dagbag.get_dag(dag_id="train")
+def test_train_dag_structure(dag_bag_fixture):
+    dag = dag_bag_fixture.get_dag(dag_id="train")
     assert_dag_dict_equal(
         {
             "wait-for-data": ["docker-airflow-preprocess"],
@@ -38,8 +29,8 @@ def test_train_dag_structure(dagbag):
     )
 
 
-def test_predict_dag_structure(dagbag):
-    dag = dagbag.get_dag(dag_id="predict")
+def test_predict_dag_structure(dag_bag_fixture):
+    dag = dag_bag_fixture.get_dag(dag_id="predict")
     assert_dag_dict_equal(
         {
             "wait-for-predict-data": ["docker-airflow-predict_preprocess"],
